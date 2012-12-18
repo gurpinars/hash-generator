@@ -69,7 +69,7 @@ class Ui_Form(object):
             self.SHA256(self.lineEdit.text().toUtf8())
         elif self.comboBox.currentText() == "SHA384":
             self.SHA384(self.lineEdit.text().toUtf8())
-        elif self.comboBox.currentText() == "SHA512":
+        else: 
             self.SHA512(self.lineEdit.text().toUtf8())
     def MD5(self,text):
         self.hash = hashlib.md5(text).hexdigest()
