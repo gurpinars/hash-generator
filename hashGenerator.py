@@ -6,7 +6,9 @@
 #      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
-
+#
+# Author:M. Sami GÜRPINAR
+#      
 from PyQt4 import QtCore, QtGui
 import hashlib
 
