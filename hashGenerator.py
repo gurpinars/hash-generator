@@ -17,6 +17,44 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
+
+		
+class Generator(object):
+    ''' 
+    Class including hash genarating methods
+
+    '''
+    
+    def __init__(self,ui):
+        self.ui = ui
+    
+    def md5(self,text):
+        self.hash = hashlib.md5(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+    
+    def sha(self,text):
+        self.hash = hashlib.sha1(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+    
+    def sha224(self,text):
+        self.hash = hashlib.sha224(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+
+    def sha256(self,text):
+        self.hash = hashlib.sha256(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+
+    def sha384(self,text):
+        self.hash = hashlib.sha384(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+
+    def sha512(self,text):
+        self.hash = hashlib.sha512(text).hexdigest()
+        self.ui.textEdit.setText(self.hash)
+    
+
+
+	
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -33,7 +71,7 @@ class Ui_Form(object):
         self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setGeometry(QtCore.QRect(172, 300, 98, 27))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
-        self.pushButton.connect(self.pushButton,QtCore.SIGNAL("clicked()"),self.clickedButton)
+        QtCore.QObject.connect(self.pushButton,QtCore.SIGNAL("clicked()"),self.clickedButton)
         self.widget = QtGui.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(11, 61, 258, 227))
         self.widget.setObjectName(_fromUtf8("widget"))
@@ -46,9 +84,9 @@ class Ui_Form(object):
         self.textEdit = QtGui.QTextEdit(self.widget)
         self.textEdit.setObjectName(_fromUtf8("textEdit"))
         self.verticalLayout.addWidget(self.textEdit)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        self.generator = Generator(self)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Hash Generator", None, QtGui.QApplication.UnicodeUTF8))
@@ -62,35 +100,18 @@ class Ui_Form(object):
 
     def clickedButton(self):
         if self.comboBox.currentText() == "MD5":
-            self.MD5(self.lineEdit.text().toUtf8())
+            self.generator.md5(self.lineEdit.text().toUtf8())
         elif self.comboBox.currentText() == "SHA":
-            self.SHA(self.lineEdit.text().toUtf8())
+            self.generator.sha(self.lineEdit.text().toUtf8())
         elif self.comboBox.currentText() == "SHA224":
-            self.SHA224(self.lineEdit.text().toUtf8())
+            self.generator.sha224(self.lineEdit.text().toUtf8())
         elif self.comboBox.currentText() == "SHA256":
-            self.SHA256(self.lineEdit.text().toUtf8())
+            self.generator.sha256(self.lineEdit.text().toUtf8())
         elif self.comboBox.currentText() == "SHA384":
-            self.SHA384(self.lineEdit.text().toUtf8())
+            self.generator.sha384(self.lineEdit.text().toUtf8())
         else: 
-            self.SHA512(self.lineEdit.text().toUtf8())
-    def MD5(self,text):
-        self.hash = hashlib.md5(text).hexdigest()
-        self.textEdit.setText(self.hash)
-    def SHA(self,text):
-        self.hash = hashlib.sha1(text).hexdigest()
-        self.textEdit.setText(self.hash)
-    def SHA224(self,text):
-        self.hash = hashlib.sha224(text).hexdigest()
-        self.textEdit.setText(self.hash)
-    def SHA256(self,text):
-        self.hash = hashlib.sha256(text).hexdigest()
-        self.textEdit.setText(self.hash)
-    def SHA384(self,text):
-        self.hash = hashlib.sha384(text).hexdigest()
-        self.textEdit.setText(self.hash)
-    def SHA512(self,text):
-        self.hash = hashlib.sha512(text).hexdigest()
-        self.textEdit.setText(self.hash)
+            self.generator.sha512(self.lineEdit.text().toUtf8())
+    
 
 
 if __name__ == "__main__":
