@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 #
 # Author:M. Sami GÜRPINAR
+# Email :sami.gurpinar@gmail.com
 #      
 from PyQt4 import QtCore, QtGui
 import hashlib
