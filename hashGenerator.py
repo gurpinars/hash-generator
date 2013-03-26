@@ -11,7 +11,7 @@
 # Email :sami.gurpinar@gmail.com
 #      
 from PyQt4 import QtCore, QtGui
-import hashlib
+from generator import Generator
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -19,43 +19,6 @@ except AttributeError:
     _fromUtf8 = lambda s: s
 
 
-		
-class Generator(object):
-    ''' 
-    Class including hash genarating methods
-
-    '''
-    
-    def __init__(self,ui):
-        self.ui = ui
-    
-    def md5(self,text):
-        self.hash = hashlib.md5(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-    
-    def sha(self,text):
-        self.hash = hashlib.sha1(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-    
-    def sha224(self,text):
-        self.hash = hashlib.sha224(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-
-    def sha256(self,text):
-        self.hash = hashlib.sha256(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-
-    def sha384(self,text):
-        self.hash = hashlib.sha384(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-
-    def sha512(self,text):
-        self.hash = hashlib.sha512(text).hexdigest()
-        self.ui.textEdit.setText(self.hash)
-    
-
-
-	
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
